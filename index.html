@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Krus Student Publication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <section id="Home" class="py-16 bg-gray-50">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #002366; /* Royal Blue */
+            --secondary: #0F52BA; /* Slightly lighter royal blue */
+            --accent: #FFD700; /* Gold/Yellow */
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0, 35, 102, 0.9) 0%, rgba(15, 82, 186, 0.9) 100%);
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .article-card {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .featured-article {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/489957035_122155590368546283_763775281385878102_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHF8eFSkKEDa6tfF5fI5WKb3Mh1RqPjnzzcyHVGo-OfPAIz6rqWB1KiHHyDV26GEpGR35-IdwYoxDSO1kgIMhfe&_nc_ohc=g2kQZ6WyH9oQ7kNvwFe62tn&_nc_oc=AdnJCe3oZJL19KpO3Yc-eNELPfRVF3DyR00vvzVJqHc5jQ4zzWed2e-rooiYc6qpD94&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=NZuemfuhQO6pFQyWbk9MVw&oh=00_AfLYMDj3HmMkKkVGiXFOnWBZBx_oZfng9MoG0hfgbCzn4w&oe=682940BC');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Fix for footer border color */
+        .footer-border {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Fix for image aspect ratios */
+        .image-cover {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            height: 50px;
+            width: auto;
+            max-width: 350px;
+        }
+        
+        /* Pulse animation for CTA buttons */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* News section styles */
+        .news-tabs {
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .news-tab {
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .news-tab:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .news-tab.active:after {
+            width: 100%;
+        }
+        
+        .news-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .news-article {
+            transition: all 0.3s ease;
+        }
+        
+        .news-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .news-load-more {
+            transition: all 0.3s ease;
+        }
+        
+        .news-load-more:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 scroll-smooth">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Logo image with text -->
+                <div class="logo-container flex items-center space-x-3">
+                    <img src="https://iili.io/3URf414.jpg"
+                          alt="An Krus Logo"
+                          class="logo-img">
+                    <span class="heading-font text-2xl font-bold hidden sm:block" style="color: var(--primary);"></span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#Home" class="nav-link font-medium" style="color: var(--primary);">Home</a>
+                <a href="#news" class="nav-link text-gray-600 hover:text-blue-800 font-medium">News</a>
+                <a href="#features" class="nav-link text-gray-600 hover:text-blue-800 font-medium">Featured Story</a>
+                <a href="#opinion" class="nav-link text-gray-600 hover:text-blue-800 font-medium">Opinion</a>
+                <a href="#editorial-board" class="nav-link text-gray-600 hover:text-blue-800 font-medium">Editorial Board</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-blue-800 font-medium">About</a>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="menu-toggle" class="focus:outline-none" style="color: var(--primary);">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <a href="#Home" class="block py-2 font-medium" style="color: var(--primary);">Home</a>
+            <a href="#news" class="block py-2 text-gray-600 hover:text-blue-800 font-medium">News</a>
+            <a href="#features" class="block py-2 text-gray-600 hover:text-blue-800 font-medium">Featured Story</a>
+            <a href="#opinion" class="block py-2 text-gray-600 hover:text-blue-800 font-medium">Opinion</a>
+            <a href="#editorial-board" class="block py-2 text-gray-600 hover:text-blue-800 font-medium">Editorial Board</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-blue-800 font-medium">About</a>
+        </div>
+    </nav>
+    
+<!-- Hero Section -->
+<header class="relative text-white py-20 bg-cover bg-center flex items-center justify-center text-center" style="background-image: url('https://i.imgur.com/G9rT9le.png');">
+    <!-- Blur and dark overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+
+    <!-- Centered Content -->
+    <div class="relative z-10 max-w-3xl px-4">
+        <h1 class="heading-font text-5xl md:text-6xl font-bold mb-4">Welcome to An Krus</h1>
+        <h2 class="text-2xl md:text-3xl font-medium mb-6">
+            The Official Student Media Organization of Holy Cross College of Carigara, Incorporated ✒️
+        </h2>
+        <p class="text-lg">
+            Bringing you the latest news, features, and opinions from our campus community.
+            Write With A Heart.
+        </p>
+    </div>
+</header>
+
+    <section id="latest" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-sm font-semibold tracking-wider uppercase px-4 py-1 rounded-full"
+                       style="background-color: rgba(0, 35, 102, 0.1); color: var(--primary);">
+                    Latest Updates
+                </span>
+                <h2 class="heading-font text-3xl font-bold mt-4" style="color: var(--primary);">Campus News & Stories</h2>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-6.fna.fbcdn.net/v/t39.30808-6/495912145_122162625554546283_4561201321075793831_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGt1FeqRZx7EWKxGhgOohepiblV8LGNVOuJuVXwsY1U6x530kvQL1Fm7qWyKM-79c5Jv3W2qOm0C2K0EUYB188u&_nc_ohc=bTCdIF2hjoQQ7kNvwEHyoWl&_nc_oc=AdmqLX2n5fAlpKQzvJJF2-6NdZpmyyscGKquKexsTUSN3t2dJPob8xxKQACaa7hIQOQ&_nc_zt=23&_nc_ht=scontent.fmnl4-6.fna&_nc_gid=sOnwt8I0-H5dmySaibA2gw&oh=00_AfLYzedhg-MO4e7chxiAwA4II3xn32G8yOH1Q4xliex76w&oe=6826F3B1"
+                              alt="Article image"
+                              class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-yellow-500 text-blue-800 text-xs font-bold px-2 py-1 rounded-full uppercase">
+                            New
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-sm font-medium" style="color: var(--secondary);">Local News</span>
+                        <h3 class="text-xl font-bold mt-2 mb-3">𝐄𝐃𝐈𝐓𝐎𝐑𝐈𝐀𝐋 | Beyond the Bribe</h3>
+                        <p class="text-gray-600 mb-4">The integrity of our democratic process is under threat from a familiar foe: vote buying. It is disappointing that this practice is getting normalized by the society when it not only corrupts the electoral system but also perpetuates a culture of corruption and dishonesty in the government.
+Vote buying disproportionately affects the most vulnerable members of society. Those who are struggling financially are often tempted by quick cash, unaware of the long-term consequences of their actions. The practice exploits their desperation, further entrenching poverty and inequality.
+The practice of vote buying also has a corrosive effect on the political landscape. It creates an uneven playing field, where candidates with deep pockets have an unfair advantage over those who are genuinely committed to public service.
+How do we achieve the long dream of us Filipinos of a great Philippines when we choose our leaders this way?
+Increasing voter awareness is crucial in preventing vote buying, as an informed electorate is better equipped to resist the temptation of quick cash and make decisions based on genuine conviction. By coupling this awareness with greater transparency in elections, such as real-time monitoring and strict accountability measures, we can create a powerful deterrent against vote buying and ensure the integrity of our democratic process.
+Elections are not just a simple process of voting candidates: it's about choosing the right leaders of the country to do the job, efficiently and effectively. As the 2025 elections roll on, let's rise up and demand a future where leaders are chosen based on vision and integrity, not bought influence.
+|
+𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝒁𝒂𝒎𝒓𝒂 𝑷𝒂𝒏𝒈𝒊𝒍𝒊𝒏𝒂𝒏, 𝑯𝑳𝑨</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Zenith</span>
+                            <span class="mx-2">•</span>
+                            <span>May 11, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 2 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-4.fna.fbcdn.net/v/t39.30808-6/495401448_122162052680546283_1472893234133215152_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHqyNavFtvEYThYD-L-I-mxhKKlLkc1v7CEoqUuRzW_sGsp6uUPrW7ktPgoFiVPdvh2q6vrhJcEQaHFi75svHiS&_nc_ohc=toF1qfN87l0Q7kNvwGSOpfU&_nc_oc=AdlLjInViKwygfIR6PfjOjMPzOaVdqy7T3karB4fytitm4AlTcQVg4IBsK5ls6TftGw&_nc_zt=23&_nc_ht=scontent.fmnl4-4.fna&_nc_gid=Jxv1I-g50yPqmArtVEy1eA&oh=00_AfIKpIe3yvzGIL2lGHwkEZrvxA6k7pCqF9xPbwm4GkaaBw&oe=68270D2F"
+                              alt="Article image"
+                              class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full uppercase">
+                            Hot
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-sm font-medium" style="color: var(--secondary);">World News</span>
+                        <h3 class="text-xl font-bold mt-2 mb-3">HABEMUS PAPAM!</h3>
+                        <p class="text-gray-600 mb-4">‎Robert Francis Prevost has been elected as the new leader of the Roman Catholic Church.
+‎
+‎Taking the papal name Pope Leo XIV, the 69-year-old American prelate now stands at the helm of the 1.4 billion-strong global Catholic community.
+‎
+‎Chosen by the conclave of 133 cardinals, Prevost makes history as the first-ever pope from the United States, succeeding Pope Francis.
+‎
+‎His official inauguration is set for the fifteenth of May 2025 at St. Peter’s Basilica in Vatican City.
+‎
+‎|
+‎𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝑮𝒊𝒓𝒍𝒆𝒆 𝑨𝒏𝒏𝒆 𝑪𝒆𝒓𝒆𝒛𝒐, 𝑺𝑳𝑨</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Kent D. Reyes | Editor-in-Chief</span>
+                            <span class="mx-2">•</span>
+                            <span>May 9, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl font-bold" style="color: var(--primary);">Campus News</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-2">Stay updated with the latest happenings around Holy Cross College of Carigara</p>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mt-4"></div>
+            </div>
+            
+            <!-- News Tabs -->
+            <div class="flex overflow-x-auto pb-2 mb-8 news-tabs">
+                <div class="flex space-x-8">
+                    <button class="news-tab active px-1 py-2 text-gray-600 hover:text-blue-800 transition" data-category="all">All News</button>
+                    <button class="news-tab px-1 py-2 text-gray-600 hover:text-blue-800 transition" data-category="campus">Campus</button>
+                    <button class="news-tab px-1 py-2 text-gray-600 hover:text-blue-800 transition" data-category="student-life">Student Life</button>
+                    <button class="news-tab px-1 py-2 text-gray-600 hover:text-blue-800 transition" data-category="sports">Sports</button>
+                    <button class="news-tab px-1 py-2 text-gray-600 hover:text-blue-800 transition" data-category="world">World</button>
+                </div>
+            </div>
+            
+            <!-- News Grid -->
+            <div class="news-grid">
+              
+                <!-- News Article 1 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="world">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-2.fna.fbcdn.net/v/t39.30808-6/493145913_122158421366546283_7117865452023943369_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHLgLlXT9DMhKM8ZtTG6K5kvyPpcjgqr_a_I-lyOCqv9hCnqEMQXdncxkeRdQuQHfgKlmoG8-ac67dV3TLhgD5a&_nc_ohc=oi_tAkuPNG8Q7kNvwHlIzlF&_nc_oc=AdlVgNwJFHXWnDf-xjhz1K6wSBtRznHzGF2lBGC72fSSxgwoD9wGNWRBCt_Xr7xy8RE&_nc_zt=23&_nc_ht=scontent.fmnl4-2.fna&_nc_gid=GjmNWqHraT34wsPVwk84Hg&oh=00_AfKn1OeClszLVVRIJ_3gD7RxOtTB531aaxswjpLuPaYV3g&oe=6829294E"
+                          alt="Pope Francis"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">World</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">𝐁𝐑𝐄𝐀𝐊𝐈𝐍𝐆 𝐍𝐄𝐖𝐒: Pope Francis, the 266th Bishop of Rome, passed into eternal rest on Easter Monday, April 21, 2025, at the age of 88. His death occurred within the quiet sanctuary of Casa Santa Marta, his chosen dwelling inside the heart of the Vatican.</h3>
+                        <p class="text-gray-600 mb-4">Vatican Media reports that he is to be laid to rest at the Basilica of Santa Maria Maggiore in Rome—a sacred edifice of deep personal and spiritual significance to the late pontiff, reflecting his devotion to the Blessed Virgin Mary, whom he honored as the Mother of the Church.
+‎
+‎|
+‎𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝑮𝒊𝒓𝒍𝒆𝒆 𝑨𝒏𝒏𝒆 𝑪𝒆𝒓𝒆𝒛𝒐, 𝑺𝑳𝑨</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Kent D. Reyes | Editor-in-Chief</span>
+                            <span class="mx-2">•</span>
+                            <span>April 21, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+              
+                <!-- News Article 1.2 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="campus">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-2.fna.fbcdn.net/v/t39.30808-6/491924029_122158104590546283_8530410133694887158_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFfJ7hB6k2RUhq4zS_N0anv8-sfk_FqU4rz6x-T8WpTisazjVB8stnzDiL-AtJPM6vlMuPkYA8EfHEmckUZUpIw&_nc_ohc=ab7lDJooBAkQ7kNvwEZGDg_&_nc_oc=Adna443Xi91rbqDCvsmkNj2inU3STAPeIvPjmYkuJowjruClSXitLyQAkhBO8Uz9PmI&_nc_zt=23&_nc_ht=scontent.fmnl4-2.fna&_nc_gid=HGQ66A5qPHZ5-IPoEk6dSg&oh=00_AfIJWaC5JFdIDP0CgZm5XTwhyGEWZY5pm0ZRw3H8kY5vzg&oe=68291BDB"
+                          alt="Pope Francis"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Campus</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">He is Risen!</h3>
+                        <p class="text-gray-600 mb-4">On this sacred day, we remember the power of His resurrection, a reminder that no darkness is too deep, no sorrow is too heavy, and no sin is too great.
+‎
+‎We rejoice not only in an empty tomb, but in the fullness of His love that conquered death and gave us eternal light.
+‎
+‎Happy blessed easter!🙏🏼✨🐣
+‎
+‎|
+‎ 𝑷𝒖𝒃𝒎𝒂𝒕 𝒃𝒚 𝑮𝒊𝒓𝒍𝒆𝒆 𝑨𝒏𝒏𝒆 𝑪𝒆𝒓𝒆𝒛𝒐, 𝑺𝑳𝑨</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Kent D. Reyes</span>
+                            <span class="mx-2">•</span>
+                            <span>April 20, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+                
+                <!-- News Article 2 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="campus">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/491970573_122157927890546283_4226715918222647598_n.jpg?stp=dst-jpg_p526x395_tt6&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEcDvwjfvZWwy-27juuOBAHM7sUTFKmfIYzuxRMUqZ8hiVGL9BQAYh4cEH9V5mB87PkxlI1_C0ipyxk51_tWCSC&_nc_ohc=toxRkCUJwSAQ7kNvwFDmPxk&_nc_oc=AdkFzy-Ii6iqZfk3-2L2z7sg2Ou3kjS5LCEU8FEbrxveq_Xmm_AzRM9dpXEecjmzJGg&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=FL8Ov-bqwL8DMjEc83mhWg&oh=00_AfI9kh4gYGHIhWGfLb7Vviz-G7oz5FVYJwLW967m3en0yA&oe=68293028"
+                          alt="Graduation ceremony"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Campus</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">𝐖𝐈𝐓𝐍𝐄𝐒𝐒: Academic excellence took center stage as Holy Cross College of Carigara, Incorporated (HCCCI) held its Recognition and Graduation Day last April 11 and 12.</h3>
+                        <p class="text-gray-600 mb-4">The ceremony celebrated the achievements of Junior High Completers, Senior High graduates, and College students from first to fourth year.
+‎
+‎Kent Deloria Reyes, a with high honor graduate and Class Valedictorian from Accountancy, Business and Management (ABM) strand expressed his words of welcome.
+‎
+‎While, Archie Bald Horca, with high honors and the Class Salutatorian from Science, Technology, Engineering, and Mathematics (STEM) strand offered the invocation.
+‎
+‎Ruela Mae Cospada, a Summa Cum Laude graduate in Bachelor of Science in Business Administration (BSBA), delivered her words of gratitude.
+‎
+‎Meanwhile, Aiyazen Legaspi, a Cum Laude graduate in Bachelor of Physical Education (BPED), pledged allegiance to the alma mater.
+‎
+‎HCCCI College Dean Sister Maribel Pianco, OSF, in her closing remarks, she emphasized the intrinsic worth of every student, regardless of accolades, stating: “You are always valuable, whether you have medals or none.” 
+‎
+‎The ceremony concluded with the conferral of medals and certificates, formally acknowledging the students' academic diligence and distinction throughout the 2024-2025 academic year.
+‎|
+‎𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝑮𝒊𝒓𝒍𝒆𝒆 𝑨𝒏𝒏𝒆 𝑪𝒆𝒓𝒆𝒛𝒐, 𝑺𝑳𝑨
+|
+‎𝑪𝒂𝒑𝒕𝒖𝒓𝒆𝒅 𝒃𝒚 𝑫𝒂𝒗𝒆 𝑩𝒂𝒄𝒐𝒏𝒂𝒘𝒂, 𝑹𝑩</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Phelbas Caliel Sicadsicad and Mark Federico Fuentes</span>
+                            <span class="mx-2">•</span>
+                            <span>April 19, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+                
+                <!-- News Article 3 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="sports">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/487828130_122105627732822417_7744197644329176170_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeGU1p0YnBhQUx73mmcM-udbKLpR2GHauR4oulHYYdq5HpzsWJ8LsNlKoflm7mnhC74tY4BxCg95VtFKck5eP6Mc&_nc_ohc=SdtNJz414UEQ7kNvwGZNBuz&_nc_oc=Adki-Z7OjKPOSDZPX44RyYeVXWieboxo3QM-zMVAMgOGBoWPl5RZ17OLAjPyvcNLTBs&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=5-JHU8FdbcJ9ipXEQu4oNg&oh=00_AfItTVXkiKrXnnE025tK6NxwiI9Z_KP4x_7-F9DJkRq_Lg&oe=682918B7"
+                          alt="Holympics"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Sports</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">💛 Holympics 2025: Passion in motion; Competing with courage, Winning with a H.E. A.R.T.💙</h3>
+                        <p class="text-gray-600 mb-4">Grade 11 students showed what it means to compete with heart — pushing limits, building bonds, and celebrating every victory together! 🏃‍♂️🏆 #Holympics2025 | Captured by: Paul Vincent Clemente & Rubelyn Camposano | Layout by: Vincent Sabay</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Euno Nijel Maceda</span>
+                            <span class="mx-2">•</span>
+                            <span>April 2, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+                
+                <!-- News Article 4 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="campus">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/489993116_122156268632546283_4516623580986940832_n.jpg?stp=dst-jpg_p526x395_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFGa1bLZuXtcJiUiWYog8O12o0LQ_u61lvajQtD-7rWW5aIcrtiDp1xlbZ2VPir9oimgYYetgxn8NYf4e0btT6e&_nc_ohc=TGtfxFA0ZngQ7kNvwGB6gqB&_nc_oc=AdkmHKh9YOXoJtcgDWZH9UvaXFFWoow0__fWuhd0awZEzH1VKSkCijMs1RX59uxHZX4&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=NZuemfuhQO6pFQyWbk9MVw&oh=00_AfK9vwNqFWUXqC5_70fhTSODu_4vAAkScuzgGoNbzmeaqA&oe=68291C32"
+                          alt="Baccalaureate Mass"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Campus</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">𝐖𝐈𝐓𝐍𝐄𝐒𝐒: Most Rev. Fr. John Du, D.D., Archbishop of Palo, presided over the Baccalaureate Mass held at Holy Cross College of Carigara, Incorporated (HCCCI) on Thursday, April 10.</h3>
+                        <p class="text-gray-600 mb-4">The mass offered thanksgiving and blessings to the high school With Honors, Completers, Graduating Senior High and College students.
+‎
+‎School administrators, parents, faculty and staff also attended the said event.
+‎
+‎#AnKrusWriteWithAHeart
+‎
+‎|𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝑮𝒊𝒓𝒍𝒆𝒆 𝑨𝒏𝒏𝒆 𝑪𝒆𝒓𝒆𝒛𝒐, 𝑺𝑳𝑨
+‎
+‎|𝑪𝒂𝒑𝒕𝒖𝒓𝒆𝒅 𝒃𝒚: 𝑪𝒚𝒓𝒂 𝑴𝒆𝒏𝒅𝒐𝒛𝒂, 𝑴𝒂𝒓𝒈𝒂𝒖𝒙 𝑫𝒆𝒏𝒊𝒔𝒆 𝑷𝒊𝒂𝒏𝒈𝒄𝒐, 𝒂𝒏𝒅 𝑫𝒂𝒗𝒆 𝑩𝒂𝒄𝒐𝒏𝒂𝒘𝒂 - 𝑨𝒏 𝑲𝒓𝒖𝒔 𝑷𝒉𝒐𝒕𝒐𝒋𝒐𝒖𝒓𝒏𝒂𝒍𝒊𝒔𝒕𝒔 𝒂𝒏𝒅 𝑹𝒂𝒅𝒊𝒐 𝑩𝒓𝒐𝒂𝒅𝒄𝒂𝒔𝒕𝒆𝒓
+</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Mark Federico Fuentes</span>
+                            <span class="mx-2">•</span>
+                            <span>April 15, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+                
+                <!-- News Article 5 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="campus">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/486077749_1217179850416954_7743232693112583831_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE1Qr_xlBiDvXpxTcp_akm_XkpfAihLsAFeSl8CKEuwAS70nedjB09-OREdIvqPnhBtCBsJYpSNI2HrJtf4acDP&_nc_ohc=eBc5CidS_BgQ7kNvwFRVLvP&_nc_oc=AdmY4v09TqKj-6nH8vaB9WKnso_UjOgcfDF-OgusSeGBpdWOfH1udkV5897nQ1EQxt0&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=lLpNQgtdabqx6wxaTf7wyw&oh=00_AfJ-pkhmkex-Gy4rahE55R49Mny2cat3OVGJ_NEl_UQp_A&oe=682915ED"
+                          alt="Student council"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Campus</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">📢 𝐇𝐨𝐥𝐲𝐜𝐫𝐨𝐬𝐬𝐢𝐚𝐧𝐬, 𝐦𝐞𝐞𝐭 𝐲𝐨𝐮𝐫 𝐧𝐞𝐰𝐥𝐲 𝐞𝐥𝐞𝐜𝐭𝐞𝐝 𝑺𝒖𝒑𝒓𝒆𝒎𝒆 𝑺𝒕𝒖𝒅𝒆𝒏𝒕 𝑮𝒐𝒗𝒆𝒓𝒏𝒎𝒆𝒏𝒕 (𝑺𝑺𝑮) 𝐨𝐟𝐟𝐢𝐜𝐞𝐫𝐬 𝐟𝐨𝐫 𝐭𝐡𝐞 𝐀𝐜𝐚𝐝𝐞𝐦𝐢𝐜 𝐘𝐞𝐚𝐫 2025-2026! 🎉  </h3>
+                        <p class="text-gray-600 mb-4">These student leaders are willing to serve, willing to lead to make a difference in our school community. With dedication, passion, and a commitment to excellence, they will represent your voices and work towards a better and more inclusive HCCCI.  
+Stay tuned for their plans, initiatives, and projects for the upcoming school year! Let’s support and work together for a brighter future. 💙✨  
+Psalm 78:72 – "And David shepherded them with integrity of heart; with skillful hands he led them."</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By HCCCI-HS-Supreme Student Government</span>
+                            <span class="mx-2">•</span>
+                            <span>April 1, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+                
+                <!-- News Article 5.1 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="student-life">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-2.fna.fbcdn.net/v/t39.30808-6/487452880_122153692448546283_6075562494042567728_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEdNywq8vJM1AIldCNRIejLmORWkSLr-q6Y5FaRIuv6rkFg6S1yuTPPBIp5aDoYzXLPS1RlyD-DODSv1qrZ0gt6&_nc_ohc=Ut3qSJqOEAAQ7kNvwF1mZXz&_nc_oc=Adm1X8rvU5cvfuU48pmbV-hq9IUPxjxJSJkdtpLVKckTpBAfwb9NZbDYRmzjjTyWK9A&_nc_zt=23&_nc_ht=scontent.fmnl4-2.fna&_nc_gid=lLpNQgtdabqx6wxaTf7wyw&oh=00_AfKegRK33DY3X2ECygCDKayYB3ci3nFJoQeHWzfBv297zA&oe=6829464D"
+                          alt="Student council"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Student Life</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">SUMAKSES NA!😜</h3>
+                        <p class="text-gray-600 mb-4">Tapos na ang sufferings dahil tapos na ang pagdurusa week!✨ 
+And like Niña, let us all say na sumakses tayong lahat! 
+Ngayon, alam mo na yung feeling na sumakses because fi-nollow mo yung self mo eh, yung parang may trust ka na kaya mo, pero step by step lang. 
+The sleepless nights and tireless days are finally over!
+Tara, let’s all have our well deserved rest.🙌🏼"</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Kent D. Reyes | Editor-in-Chief</span>
+                            <span class="mx-2">•</span>
+                            <span>April 1, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+                
+                <!-- News Article 6 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="student-life">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/487387361_122152439900546283_1692218020999760565_n.jpg?stp=dst-jpg_p526x395_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGbYdUI5GX47NIUtu6ycXr3FWRJPJVDreYVZEk8lUOt5kuk_Hp-Vf3MFERr_brE5QNC8MyZrvOutL8h3Pr02OUo&_nc_ohc=-pufdZUWdikQ7kNvwH87vg6&_nc_oc=AdmfPGNVfnng_CvKtt5XrFjZgFfUCJYgetQgohWZTTvD0mTQEWb05SWY2s-3Fg1r1MM&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=NZahk3MW_5W2mMhUvCrKmQ&oh=00_AfI75AB_dWHBTXx_xhmq-RLTeC5JOBtGuS1xEfWVofyLpw&oe=68292A70"
+                          alt="Library renovation"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Student Life</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">𝐖𝐈𝐓𝐍𝐄𝐒𝐒: Holycrossians underwent a shift in assessment methods, transitioning from online examinations to pen-and-paper tests.</h3>
+                        <p class="text-gray-600 mb-4">The examinations begun on Wednesday, March 26, and are slated to conclude tomorrow on Friday, March 28.
+Minor subjects are administered in the covered court, while major subjects are conducted within classroom settings.
+As learners undertake their fourth periodical exams, this signifies the final stretch and impending end of HCCCI’s academic year.
+| 𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝒁𝒂𝒎𝒓𝒂 𝑷𝒂𝒏𝒈𝒊𝒍𝒊𝒏𝒂𝒏, 𝑯𝑳𝑨
+| 𝑪𝒂𝒑𝒕𝒖𝒓𝒆𝒅 𝒃𝒚 𝑲𝒆𝒏𝒕 𝑫𝒆𝒍𝒐𝒓𝒊𝒂 𝑹𝒆𝒚𝒆𝒔, 𝑬𝑰𝑪-𝑵𝑾</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Kent D. Reyes | Editor-in-Chief </span>
+                            <span class="mx-2">•</span>
+                            <span>March 27, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div
+                
+                <!-- News Article 7 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="campus">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/484468070_122149630970546283_5739943902441397892_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGMPS8nAGYq6zhT2WM0U-gN23fZSsvwvwbbd9lKy_C_BjNa6rq0cO5adDgoUeSPaAzPwTLpOzX7uq7BdDzdA8Rs&_nc_ohc=5ztEmuQhp5YQ7kNvwGOIg-D&_nc_oc=AdkpgSrO0UPaB4UTeVF_YPgc12H1pT_q0rNS0TdvVbMHdKYzhci-58_7b4mjILyGmrk&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=QhDSbEXgRce7mO2QxxZSjw&oh=00_AfKnB7JJy6_e6Nx2CMfHoeJnsJdpnhh7t3Rk_5laJWLZGw&oe=68294228"
+                          alt="Library renovation"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Campus</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">𝐖𝐈𝐓𝐍𝐄𝐒𝐒: Holycrossians won third and fourth place during the Bureau of Fire Protection (BFP) poster making competition held at BFP Carigara Station on Tuesday, March 13. </h3>
+                        <p class="text-gray-600 mb-4">Shane Cabase claimed the third place, while Shane San Pedro secured the fourth. 
+The event was themed, “Sa Pamayanang Nagdadamayan, Sunog ay Naiiwasan,” which was conducted pursuant to the fire prevention month. 
+Appreciation goes to Ms. Sheryl Shane Ordoña for coaching the students, respectively.
+|
+𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝑱𝒂𝒚𝒔𝒐𝒏 𝑰𝒈𝒂𝒓𝒕𝒂, 𝑨𝑳𝑨</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Reden Nitura | News Writer </span>
+                            <span class="mx-2">•</span>
+                            <span>March 15, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+                
+                <!-- News Article 8 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="campus">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/484113337_122149627388546283_6564834915480476332_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFhzKLu4ThBiucbWmtRebCIQacRILptIIxBpxEgum0gjGQ3nlM_3RBZB4AflD2hrQsqwp87VuppIJ8Mgzfl27A4&_nc_ohc=0PbbqrASdIsQ7kNvwGByA-B&_nc_oc=Adm_oLeoMLySDi_qbIu8I0vhgrPUUq4n32OtQ1hpmtGt2hTvCnlPA7sVJQZSwkgUNM0&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=CcE3AoeOCTjdilt-ZtoiCA&oh=00_AfJXRqNq24orDbPPW1ij3RwgqsvzfNynvZ404aDmJu9GyA&oe=68294626"
+                          alt="Library renovation"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Campus</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">𝐖𝐈𝐓𝐍𝐄𝐒𝐒: In alignment with Department of Education (DepEd) Order No. 30, s. 2017, Grade 12 students of HCCCI have successfully completed their Work Immersion Program, marking its culminating activity on Friday, March 14.</h3>
+                        <p class="text-gray-600 mb-4">Through partnerships with various institutions and agencies, learners engaged in immersive, hands-on experiential learning to bridge the gap between education and industry.
+‎
+‎Gratitude was extended to Ma’am Rose Anne Lappore and Ma’am Kristine Reyes, the Work Immersion Advisers, while they also expressed appreciation to the partner institutions for their trust and support in shaping the students as future professionals.
+‎
+‎With the lessons learned and values strengthened, HCCCI’s Grade 12 students stand prepared to navigate the complexities of the professional landscape and contribute meaningfully to society.
+‎
+‎|
+‎𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝑮𝒊𝒓𝒍𝒆𝒆 𝑨𝒏𝒏𝒆 𝑪𝒆𝒓𝒆𝒛𝒐, 𝑺𝑳𝑨
+‎
+‎|𝑪𝒂𝒑𝒕𝒖𝒓𝒆𝒅 𝒃𝒚: 𝑴𝒂𝒓𝒈𝒂𝒖𝒙 𝑫𝒆𝒏𝒊𝒔𝒆 𝑷𝒊𝒂𝒏𝒈𝒄𝒐, 𝑬𝒔𝒕𝒆𝒗𝒆𝒏 𝑬𝒂𝒓𝒍 𝑷𝒂𝒄𝒖𝒓𝒊𝒃, 𝑪𝒚𝒓𝒂 𝑴𝒆𝒏𝒅𝒐𝒛𝒂, 𝒂𝒏𝒅 𝑫𝒂𝒗𝒆 𝑩𝒂𝒄𝒐𝒏𝒂𝒘𝒂 - 𝑨𝒏 𝑲𝒓𝒖𝒔 𝑷𝒉𝒐𝒕𝒐𝒋𝒐𝒖𝒓𝒏𝒂𝒍𝒊𝒔𝒕𝒔 𝒂𝒏𝒅 𝑹𝒂𝒅𝒊𝒐 𝑩𝒓𝒐𝒂𝒅𝒄𝒂𝒔𝒕𝒆𝒓</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Kent D. Reyes | Editor-in-Chief </span>
+                            <span class="mx-2">•</span>
+                            <span>March 15, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+                
+                <!-- News Article 9 -->
+                <div class="news-article bg-white rounded-lg overflow-hidden shadow-md" data-categories="campus">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/484418793_122149604492546283_6371852618101214266_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHDJk_jEyRZ0CO_FWp7znIudLTvBDvX1rx0tO8EO9fWvJJWCVmWSRKyEGm8isHWpGn-RWkC3HYiCab-4Pe6xsil&_nc_ohc=C0pR8qm4PdsQ7kNvwHZxvOS&_nc_oc=AdkREZ7f34G5a-9-XzUQLxfCIsPKekY6cPuYD4994DILi317s3VZhZzimJmmfgyaJWs&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=NTKEbf54YGKhQcpREt-KDQ&oh=00_AfLFL_4z-tT9I9mThkAg_MhKAa0NREBgovvop5KTu05rww&oe=682943DE"
+                          alt="Library renovation"
+                          class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <span class="news-category">Campus</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">𝐖𝐈𝐓𝐍𝐄𝐒𝐒: Pursuant to Nationwide Simultaneous Earthquake Drill (NSED) held on March 13, Holy Cross College of Carigara, Incorporated (HCCCI) conducted an earthquake drill, which introduced enhanced components to bolster disaster preparedness nationwide. </h3>
+                        <p class="text-gray-600 mb-4">The drill was coordinated with the Municipal Disaster Risk Reduction and Management Office (MDRRMO) on Friday, March 14. 
+‎
+‎During the HCCCI drill, students practiced the "duck, cover, and hold" technique and evacuated to designated safe zones.
+‎
+‎This initiative aligns with the broader national efforts to improve earthquake response capabilities across various sectors.
+‎
+‎|
+‎𝑳𝒂𝒚𝒐𝒖𝒕 𝒃𝒚 𝑮𝒊𝒓𝒍𝒆𝒆 𝑨𝒏𝒏𝒆 𝑪𝒆𝒓𝒆𝒛𝒐, 𝑺𝑳𝑨
+‎|𝑪𝒂𝒑𝒕𝒖𝒓𝒆𝒅 𝒃𝒚: 𝑴𝒂𝒓𝒈𝒂𝒖𝒙 𝑫𝒆𝒏𝒊𝒔𝒆 𝑷𝒊𝒂𝒏𝒈𝒄𝒐, 𝑬𝒔𝒕𝒆𝒗𝒆𝒏 𝑬𝒂𝒓𝒍 𝑷𝒂𝒄𝒖𝒓𝒊𝒃, 𝑪𝒚𝒓𝒂 𝑴𝒆𝒏𝒅𝒐𝒛𝒂, 𝒂𝒏𝒅 𝑫𝒂𝒗𝒆 𝑩𝒂𝒄𝒐𝒏𝒂𝒘𝒂 - 𝑨𝒏 𝑲𝒓𝒖𝒔 𝑷𝒉𝒐𝒕𝒐𝒋𝒐𝒖𝒓𝒏𝒂𝒍𝒊𝒔𝒕𝒔 𝒂𝒏𝒅 𝑹𝒂𝒅𝒊𝒐 𝑩𝒓𝒐𝒂𝒅𝒄𝒂𝒔𝒕𝒆𝒓</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>By Precious Noreen Canillo | News Writer </span>
+                            <span class="mx-2">•</span>
+                            <span>March 15, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="block absolute inset-0"></a>
+                </div>
+            </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section id="features" class="py-20 featured-article text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl bg-black/30 backdrop-blur-sm rounded-xl p-8">
+                <span class="text-sm font-medium bg-white px-3 py-1 rounded-full inline-block" style="color: var(--primary);">Featured Story</span>
+                <h2 class="heading-font text-3xl md:text-4xl font-bold mt-4 mb-6">ARAW NG KAGITINGAN</h2>
+                <p class="text-lg mb-8">On this day, we pause to honor the immortal bravery of those who, with fortitude and boundless sacrifice, stood resolute in the defense of our freedom and democracy.
+
+On this Araw ng Kagitingan, let us pay homage to their heroic deeds and reflect on the timeless values of courage, selflessness, and devotion to our nation—values that continue to inspire our relentless pursuit of excellence.
+
+In solemn recognition of this sacred day, Malacañang Palace has declared April 9 (Wednesday) a regular holiday under Proclamation No. 727, series of 2024.
+
+As such, all classes and office transactions are suspended.
+
+#AnKrusWriteWithAHeart
+|
+𝑷𝒖𝒃𝒎𝒂𝒕 𝒃𝒚 𝑮𝒊𝒓𝒍𝒆𝒆 𝑨𝒏𝒏𝒆 𝑪𝒆𝒓𝒆𝒛𝒐, 𝑺𝑳𝑨 </p>
+                <div class="flex items-center mb-6">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/468205625_122127414536546283_7898907358573947891_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHlrNcVxh2PUQQ2cH2fYm1o0faFpeJCN-HR9oWl4kI34SZKLN16iGlBt-JdEGDTxCwfRM3T1ejlIkJfhMxtNPWT&_nc_ohc=0ANI6orJwJMQ7kNvwFBVIj-&_nc_oc=AdlHUP2aQxslugaI2QLRuX1HgD8LalfJYpvIqaaLQ0sXA4q9QXFiGyh6mI-djUC5Ezk&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=72QcGwlU_8oc9KMcitCaaQ&oh=00_AfIIRipEaE7IddXrzxEUngI5RJjh13Ozafxl5TqQSCtpTw&oe=68292DC5"
+                              alt="Author"
+                              class="image-cover">
+                    </div>
+                    <div>
+                        <p class="font-medium">Kent D. Reyes</p>
+                        <p class="text-sm text-gray-300">Editor-in-Chief</p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Opinion Section -->
+    <section id="opinion" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl font-bold" style="color: var(--primary);">Voices of the Campus</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-2">Thought-provoking perspectives from students and faculty</p>
+                <div class="w-24 h-1 bg-yellow-500 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Opinion 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4 border-2" style="border-color: var(--accent);">
+                            <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/468205625_122127414536546283_7898907358573947891_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHlrNcVxh2PUQQ2cH2fYm1o0faFpeJCN-HR9oWl4kI34SZKLN16iGlBt-JdEGDTxCwfRM3T1ejlIkJfhMxtNPWT&_nc_ohc=0ANI6orJwJMQ7kNvwFBVIj-&_nc_oc=AdlHUP2aQxslugaI2QLRuX1HgD8LalfJYpvIqaaLQ0sXA4q9QXFiGyh6mI-djUC5Ezk&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=72QcGwlU_8oc9KMcitCaaQ&oh=00_AfIIRipEaE7IddXrzxEUngI5RJjh13Ozafxl5TqQSCtpTw&oe=68292DC5"
+                                  alt="Author"
+                                  class="image-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Kent D. Reyes</h4>
+                            <p class="text-sm text-gray-500">Editor-in-Chief</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">What is An Krus?</h3>
+                    <p class="text-gray-600 mb-4">An Krus represents every Holycrossian who bears the virtues and values of the Holy Cross, which makes him/her a true-blooded Holycrossian with a H.E.A.R.T—humility, excellence, accountability, resilience, trust and faith in God.</p>
+                    <a href="#" class="text-sm font-medium flex items-center" style="color: var(--secondary);">
+                    </a>
+                </div>
+                <!-- Opinion 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4 border-2" style="border-color: var(--accent);">
+                            <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468294716_122127413678546283_4125093797557083867_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFjjRp3GlUgIx4IW0RB6a6GQo9zq1qio_dCj3OrWqKj97jNiZlY6BpeKzL8VcpXUx2YPBz4Tr2VP09F-lNGk5Lz&_nc_ohc=rP7d17B2LAcQ7kNvwELAKzj&_nc_oc=Admle7OUr8nqPnQ2KMMgEYD59kqDzHO9G0P9gYo-DyaltLpXwWdtatl6C_-RYtCOKPg&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=CkH5PLwUPalG_UmqNQ8RaQ&oh=00_AfKApkQjFd849mGiCmX0a7aPrKGmU9F_RbYiaccwXt58yQ&oe=68291577"
+                                  alt="Author"
+                                  class="image-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Arjoreco Avila</h4>
+                            <p class="text-sm text-gray-500">Technical Adviser</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">The Hidden Costs of Student Success</h3>
+                    <p class="text-gray-600 mb-4">While we celebrate academic achievements, we rarely talk about the financial and emotional toll that the pressure to succeed takes on students.</p>
+                    <a href="#" class="text-sm font-medium flex items-center" style="color: var(--secondary);">
+                    </a>
+                </div>
+
+                <!-- Opinion 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4 border-2" style="border-color: var(--accent);">
+                            <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468159430_122127414050546283_5375862614273122771_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEaZ4PFfVA6mP9U0w4eiI88MJFTOg3CDFkwkVM6DcIMWfEPkJtWaR6tYUY_43CzEE0thbGkoV_xjfLH5aOrFI5l&_nc_ohc=GSFbEF8ygicQ7kNvwGMQ-o6&_nc_oc=Adkkm3tKZibgyDDdPk4fZnvHhgdXb_nPnSDZhFy4zrdusNwOXJlQcy-3mMEnFAwnPrY&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=e3m2CjVvrn7gBYQeNdPHIg&oh=00_AfLIFD6M8AWh9UuCyTUZA4M5YuAudnwKDt_A0dEbG98Uyg&oe=68291867"
+                                  alt="Author"
+                                  class="image-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Mharjon Earl Aguaviva</h4>
+                            <p class="text-sm text-gray-500">Technical Adviser</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Why did you choose HCCCI?</h3>
+                    <p class="text-gray-600 mb-4">Holy Cross College of Carigara Incorporated offers a supportive and values-driven environment for teachers. Rooted in Catholic and Franciscan traditions, the college emphasizes academic excellence, student development, and moral integrity. Faculty members benefit from a collaborative atmosphere, professional growth opportunities, and a focus on work-life balance. Overall, it is seen as a fulfilling place to teach, especially for those aligned with its mission and values.</p>
+                    <a href="#" class="text-sm font-medium flex items-center" style="color: var(--secondary);">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+  <!-- Editorial Board Section -->
+<section id="editorial-board" class="py-16 editorial-board">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="heading-font text-3xl font-bold" style="color: var(--primary);">Editorial Board</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mt-2">
+                Meet the talented team behind An Krus Student Publication
+            </p>
+            <div class="w-24 h-1 bg-yellow-500 mx-auto mt-4"></div>
+
+            <!-- Image inserted below text -->
+            <div class="mt-8">
+                <img src="https://i.imgur.com/1qAPiOr.jpeg"
+                     alt="Editorial Board"
+                     class="mx-auto mt-4 max-w-xl w-full h-auto rounded-md shadow-md">
+            </div>
+        </div>
+    </div>
+</section>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                <!-- Board Member 1 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/468205625_122127414536546283_7898907358573947891_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHlrNcVxh2PUQQ2cH2fYm1o0faFpeJCN-HR9oWl4kI34SZKLN16iGlBt-JdEGDTxCwfRM3T1ejlIkJfhMxtNPWT&_nc_ohc=0ANI6orJwJMQ7kNvwFBVIj-&_nc_oc=AdlHUP2aQxslugaI2QLRuX1HgD8LalfJYpvIqaaLQ0sXA4q9QXFiGyh6mI-djUC5Ezk&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=0txjwpRXuY7SDjiihVVt-g&oh=00_AfLCWuIYjSy6g8n5LFCbH2AMF6RXmbIydNdOTHUbJ7Pq3Q&oe=68292DC5" 
+                             alt="Kent D. Reyes" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Kent D. Reyes</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Editor-in-Chief</span>
+                </div>
+
+                <!-- Board Member 2 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468207090_122127414134546283_7367813326905001841_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEsx24xTXrKIhXcKFevHizccKnvih4MeUZwqe-KHgx5RmCyRc1N_8OeB5PsjY82PkJyvx3ejm8bL08WFz2rcIUs&_nc_ohc=ij9Frug9RroQ7kNvwFVlAZL&_nc_oc=AdniJCJ6A7ZxmJWWEU9_RVkanRT0RKT2bhNvuFoT7DH9RwxwHOnqIbrePUFvE2GD4dE&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=T2kFHGpJ_JuA6C9Y3F90dA&oh=00_AfLktDI9DdeKGHd8SjmQXfj9VuNlZj1agXQ2RbWBnXV1Yg&oe=68293F4D" 
+                             alt="Arjoreco Avila" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Kerby F. Andres</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Associate Editor</span>
+                </div>
+
+                <!-- Board Member 3 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/468334083_122127413762546283_7246014743132053553_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGL9UyPyrUdzJmkte2d24drMnIKmY5NbWUycgqZjk1tZfbcJGRLydiVdKJ8_C-ZOszsjSLdDrS4KkOq8f27MtAY&_nc_ohc=-OQaXKhWKdUQ7kNvwHP63mq&_nc_oc=AdmRwRhbpon3GyPAPkahrATtmqWfUdSwYMUTiBy_FDH99KF6XBkx1HHPD4UlIn8Z8u4&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=v3splXUKEnHbDhmEMRcQhw&oh=00_AfJA_qE60nhJ7c6VuJmsUxy5ocu7KnctkJIe9tkF-m38uQ&oe=682922C8" 
+                             alt="Girlie Anne Cerezo" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Chizhelle Aile V. Caballes</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Managing Editor</span>
+                </div>
+
+                <!-- Board Member 4 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/468322564_122127414110546283_2125627528773068863_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH4xj0XtUG-e5Vh-5Wfy9h8mwuPLJ7qxv-bC48snurG_6TaDbEIm9h8tyWJ1g6fTee9jjmnxB63NkM5JJ6ItNjw&_nc_ohc=fW--pqF0NasQ7kNvwH_wW_e&_nc_oc=AdkVByt0EONfzTIB62Frqqg4bkf7npi3JlppwdpYqjJDoHvmZEJzymrDD8tCQUy1Sv8&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=IGFElApJnfx9p0z6XH298Q&oh=00_AfLaRO-_Y_woyWJuF84_OyzsYKftjlx2gUNLrQO3FENFqA&oe=6829209C" 
+                             alt="Dave Baconawa" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Jenny Ann Capaycapay</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Circulation Manager</span>
+                </div>
+
+                <!-- Board Member 5 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468280313_122127413792546283_9081535063295989675_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFYOhfY_S1b4RMwU9wQsRGNovmormG8KSCi-aiuYbwpIEdK6lCu4K-v_bJL9Q7ANKkMDSdX1md7-WZh1NWhMTxY&_nc_ohc=1kgsReuwPqIQ7kNvwHZ7-R-&_nc_oc=AdkujDA9tv4Y7qSIGuFRbruGEkO4Z6_pYDyg8RYbGGIx6_PaQFQ3-FHamZkgtcTdgpQ&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=sZSdaNTeUxdIhHHTLkFaDw&oh=00_AfKQIx8oMJVLKxGX-3mMTWf0OL4gcmp3A1LqlEzHeucLQQ&oe=682945C2" 
+                             alt="Euno Nijel Maceda" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Charm Eizen Hinoguin</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Head News Editor</span>
+                </div>
+
+                <!-- Board Member 6 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/468335119_122127414332546283_347955437433985657_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGuo_Bxqu84d3F6rfr7BiBALuzSPnO01FAu7NI-c7TUUPr8RD_Zv9YtUf_ST1luEgInoi4RwW5bM7dqQ5o5iZN1&_nc_ohc=bO2TWNngaE8Q7kNvwGG5Ro5&_nc_oc=AdnbKMtOLiU1ymqlpHWQzTexMzfoBEHeb_7CVzcm-_vl_sS6m26646A9Vk7OOTMEFqU&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=TJZYo9MZJxTduOloRN1J7w&oh=00_AfKy9EPCRYEX8skZ-X3S-eyGTvSb7_ioAqaQIJDzAF7jXA&oe=68292A3A" 
+                             alt="Phelbas Caliel Sicadsicad" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Lou Danica Basallaje</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Literary Editor</span>
+                </div>
+
+                <!-- Board Member 7 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468291920_122127414626546283_8530097071993039398_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGWRaanSAW7gai2r6h1gyujRn_ICKLeuANGf8gIot64A-iuxdJBo5DmXYYE52rlqluv50LNjy3BtckcWXwCdJZN&_nc_ohc=MWLwFvDoFOEQ7kNvwERjjx5&_nc_oc=AdmYkCDx2AP8SspO2Bw6ya8XudJby3ubvpBDrAQGEg46FEY1oJV0PD4VG9AHaSTU5ik&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=pecEbNlPf1iHDoNf17ghqw&oh=00_AfLuXUf4Z1lkvdW3Fz3czYWmmcgBdR8NwN0tRetLtqGacA&oe=68293FCB" 
+                             alt="Mark Federico Fuentes" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Ayesha Althea Cordero</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Science And Technology Editor</span>
+                </div>
+
+                <!-- Board Member 8 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/468335924_122127414416546283_810841262706498591_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHz7WsNXpGSS0MMClDo5FXXbcZzVYHHXh1txnNVgcdeHVZEXI7gMX-GnwxUDymw7Uc6y4HjYLWNITHiqGY9a4Iz&_nc_ohc=nL8z9Kjy0XkQ7kNvwGqhtIZ&_nc_oc=AdmuPWxwwXg2if5SM38xcsnZpmfna3xKmoSYToexuSCIrV5P3gqugsHKeFQifMRIZKM&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=xt7hX05kFXfJ16UKhqI_fg&oh=00_AfIzq6w23CiCYafhzXnnaypuFHnQrE6vX_WJvcKFbrqlSA&oe=6829201C" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Richard De Los Santos Jr.</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Head Sports Editor</span>
+                </div>
+                
+                <!-- Board Member 9 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/468177299_122127414314546283_1373056128432657972_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGEbvKYcDo4Pf2H3usjqnnMmld8K9jWji-aV3wr2NaOL73KLpVUBJ4WktvwFjnDz-Wy8XVVw_5FmNXlYaFIbwsk&_nc_ohc=of-LYUj3LJkQ7kNvwEZ_i9B&_nc_oc=AdnFlm_K8Fv--S1YOcpXJtJPrQlEQ63CByze75BnI7AmvsOxybjHmQUupIzJhx4zEDM&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=-X4bizxikWtlEblwI4ViXw&oh=00_AfKA5zNu93Ot7P45KIeuFvirNpQwv6SgULuFJQOTZzVNxg&oe=6829273A" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Phoebe Mae Marpa</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Sports Editor</span>
+                </div>
+                
+                <!-- Board Member 10 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468500200_122127414128546283_184783086995295907_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGoFwdbQt3paejcg4aK7i8mv4VS43E24AO_hVLjcTbgAzHGzyZ3jvdBJ_Gc7Fo1PGenptd8lxHnQJOst37Pt8Qm&_nc_ohc=WsmMM9ldFDEQ7kNvwG4cQQu&_nc_oc=AdndLTl6ONv2yOPlLehZ-M9YQwL-volhXMpbfWv0TyiJ-DRKV4Wp8mQUX00jJFxUEng&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=ZSiglIT6b58j1fcYbyHsHQ&oh=00_AfKpR-ThzuF3FmK7SSoRVtl8x4N_9CHr2vEodLOPu8qCJg&oe=68292245" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Shane Ashley San Pedro</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Head Cartoonist</span>
+                </div>
+                
+                <!-- Board Member 11 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/468159581_122127414662546283_7704601308162584050_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHW9dNsCiQDqmYA2GFZS03__7KMqsUvL2f_soyqxS8vZ4paWEWdaDkhc8CqFY-Xi6LKWc1ICY6KJLrMgz3Jf_H-&_nc_ohc=v53nNVy9lz0Q7kNvwE-tK--&_nc_oc=AdnucIhQFYaizFSYBk8vRG_C2nbzt6LEmnmCnF7XvAcqLpNEov0S7qN-dZMVrCYvNtc&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=VKDpjCuVimurrjBaUpK0qw&oh=00_AfLtLT1n45wjYuwYpKe5NdILovXSWTmTQEwo5C0h560ouQ&oe=6829365A" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Shane Cabase</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Cartoonist</span>
+                </div>
+                
+                <!-- Board Member 12 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-2.fna.fbcdn.net/v/t39.30808-6/468457890_122127414116546283_598370344915376520_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGAJ1JZUDGajy8Sej4H9332JZtA1DFPlCAlm0DUMU-UIFNF1wmaEzHLdX5wODt4YFMWfPyU69xytID6K70H3LHf&_nc_ohc=TRnKWxmDb_UQ7kNvwHwhuYP&_nc_oc=Adk7LfdIuyyrdK-F_DDUc2F1p4J1vjphSyNw2iY2ZZsVYgRZsuaG1md6MtZ6yXGLC5Y&_nc_zt=23&_nc_ht=scontent.fmnl4-2.fna&_nc_gid=cktpGKuQu_IuaoRQhlbLdg&oh=00_AfKQ8fiIacPaS5530MhqCAozeuvFf5l9E_6gubdune3Smg&oe=682930BA" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Zamra Pangilinan</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Head Layout Artist</span>
+                </div>
+                
+                <!-- Board Member 13 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-2.fna.fbcdn.net/v/t39.30808-6/468179659_122127413774546283_4047560745713250798_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEnlYf82Hrtuiz1c1zO4M0936-ZbgFxLSzfr5luAXEtLKKe0lDsVG-KIFysIs-wxKnAxmda9JtoHNw4XU92AD3b&_nc_ohc=yftFAwSosK0Q7kNvwHlIwNH&_nc_oc=Adl5wKQA26b4JZ60ncwp_mm2NosRgkOCm90gKbHzDvrs7-4BHOXwoQWWsG8RTRd_MNw&_nc_zt=23&_nc_ht=scontent.fmnl4-2.fna&_nc_gid=n5TvOgMSqTg8p2vorD5cqA&oh=00_AfJN4vAFk_FFSBylJccvThRycafn0HAJUC9nb8c7n0HJDA&oe=68292CCF" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Steven Earl Pacurib</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Head Photojournalist</span>
+                </div>
+                
+                <!-- Board Member 14 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-2.fna.fbcdn.net/v/t39.30808-6/468207602_122127413786546283_1509899865407959504_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeG_hTKuo-RhYkJ7-vh8QilRg-3tGzLRZUuD7e0bMtFlS_pfI3z7kazc2if68i8P1O4quG7FwDknviXuc_5QcIuP&_nc_ohc=tPX1vW9l5KoQ7kNvwEdhNRF&_nc_oc=AdlBE0WQqKc5U9KK1RWbWyad1N0HM6SpODJXLChfY407GniLj1V8uTFq3nPXGzGqL2M&_nc_zt=23&_nc_ht=scontent.fmnl4-2.fna&_nc_gid=QtaEesSOWpz2Cz00KRUN8w&oh=00_AfJwO8v5hI0uaC_ReXNTXhxcDH5dHRlAObgipicRlgBBOw&oe=682912CA" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Cyra Angelou Mendoza</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Photojournalist</span>
+                </div>
+                
+                <!-- Board Member 15 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468335280_122127413948546283_7636127003567090283_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGs_brTWO84nwQgsKHqZsvc-Z1AZEXzgrT5nUBkRfOCtCLbd-LsVyXUDgSWOq8CuTz4ai94NMJEu1U5IKdC1-2U&_nc_ohc=IaTat609000Q7kNvwGQ7Q_c&_nc_oc=Adk6f8EKJOtss48DC2dHpWta5n8QurkMhWtWPzcMGyuCVZ8doFq17SSd62HSPpRMXik&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=5lu_sUcL04hL3IVG8wnveg&oh=00_AfLza7ppmRtN7QYCid5AfmzS-LfuaExPxlvMFgtIIlyQ3A&oe=6829351B" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Rubelyn Camposano</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Head Videographer</span>
+                </div>
+                
+                <!-- Board Member 16 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-6.fna.fbcdn.net/v/t39.30808-6/468299734_122127414674546283_1277968249566605761_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeG4pKLWO67w5_CLKQKFFhrCyoDaHZwfqgHKgNodnB-qATyv66ldvs1CUyvesck4oz1A4uk84X_hqf1ImTeFTeQw&_nc_ohc=0KOdF21LCV0Q7kNvwECx7ju&_nc_oc=Adnza1v3dYqp7PbDVy9K476gSP68p7jkW-Dan1TM1tPhbLIrCrjIuoowbYTvFLhJ6Is&_nc_zt=23&_nc_ht=scontent.fmnl4-6.fna&_nc_gid=m7cEbIzB7Bp0QYmoxBhYDw&oh=00_AfIuTpv-ogpkmeORPQdo7SjjaQ20qwKzNuye5Eh_25CU5g&oe=682A1D13" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Gelian Mae Hanopol</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Head Feature Editor</span>
+                </div>
+                
+                <!-- Board Member 17 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468294716_122127413678546283_4125093797557083867_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFjjRp3GlUgIx4IW0RB6a6GQo9zq1qio_dCj3OrWqKj97jNiZlY6BpeKzL8VcpXUx2YPBz4Tr2VP09F-lNGk5Lz&_nc_ohc=rP7d17B2LAcQ7kNvwELAKzj&_nc_oc=Admle7OUr8nqPnQ2KMMgEYD59kqDzHO9G0P9gYo-DyaltLpXwWdtatl6C_-RYtCOKPg&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=CkH5PLwUPalG_UmqNQ8RaQ&oh=00_AfKApkQjFd849mGiCmX0a7aPrKGmU9F_RbYiaccwXt58yQ&oe=68291577" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Arjoreco Avila</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Technical Adviser</span>
+                </div>
+                
+                <!-- Board Member 18 -->
+                <div class="board-member rounded-lg overflow-hidden shadow-md p-6 text-center">
+                    <div class="member-photo rounded-full overflow-hidden mx-auto mb-4">
+                        <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/468159430_122127414050546283_5375862614273122771_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEaZ4PFfVA6mP9U0w4eiI88MJFTOg3CDFkwkVM6DcIMWfEPkJtWaR6tYUY_43CzEE0thbGkoV_xjfLH5aOrFI5l&_nc_ohc=GSFbEF8ygicQ7kNvwGMQ-o6&_nc_oc=Adkkm3tKZibgyDDdPk4fZnvHhgdXb_nPnSDZhFy4zrdusNwOXJlQcy-3mMEnFAwnPrY&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=e3m2CjVvrn7gBYQeNdPHIg&oh=00_AfLIFD6M8AWh9UuCyTUZA4M5YuAudnwKDt_A0dEbG98Uyg&oe=68291867" 
+                             alt="Zamra Pangilinan" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Mharjon Earl Aguaviva</h3>
+                    <span class="text-sm px-3 py-1 rounded-full position-badge">Technical Adviser</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="heading-font text-3xl font-bold mb-6" style="color: var(--primary);">About An Krus</h2>
+                    <p class="text-gray-600 mb-4">An Krus is the official student media organization of Holy Cross College of Carigara Incorporated. We are committed to delivering accurate, timely, and relevant news to the campus community.</p>
+                    <p class="text-gray-600 mb-6">Our team of student journalists, photographers, and editors work tirelessly to cover campus events, student life, sports, and important issues affecting our community. We strive to uphold the highest standards of journalism while fostering creativity and critical thinking.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/profile.php?id=61566388494506" class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-pink-600 hover:bg-pink-700 text-white flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center mr-4" style="background-color: rgba(0, 35, 102, 0.1);">
+                                <i class="fas fa-users text-2xl" style="color: var(--primary);"></i>
+                            </div>
+                            <h3 class="text-xl font-bold" style="color: var(--secondary);">Join Our Team</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Interested in journalism, photography, or design? We're always looking for passionate students to join our team. No prior experience necessary—just bring your enthusiasm and willingness to learn!</p>
+                        <a href="#" class="inline-flex items-center border-2 px-6 py-3 rounded-full font-medium hover:bg-blue-50 transition"
+                            style="border-color: var(--primary); color: var(--primary);">
+                            Apply Now <i class="fas fa-edit ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="https://i.imgur.com/yfrhuw4.png"
+                              alt="An Krus Logo"
+                              class="logo-img">
+                        <span class="heading-font text-xl font-bold">An Krus</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">The Official Student Media Organization of Holy Cross College of Carigara, Incorporated</p>
+                    <p class="text-sm text-gray-500">Write With A Heart</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Sections</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#news" class="text-gray-400 hover:text-white transition">News</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition">Features</a></li>
+                        <li><a href="#opinion" class="text-gray-400 hover:text-white transition">Opinion</a></li>
+                        <li><a href="editorial-board#" class="text-gray-400 hover:text-white transition">Editorial Board</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">About</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#editorial-board" class="text-gray-400 hover:text-white transition">Our Team</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">History</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Awards</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Join Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3" style="color: var(--accent);"></i>
+                            <span>Holy Cross College of Carigara Inc.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3" style="color: var(--accent);"></i>
+                            <span>ankrus@gmail.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3" style="color: var(--accent);"></i>
+                            <span>0930 673 7131</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t footer-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2024 An Krus Student Media Organization. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.animate-fadeIn');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+                
+        // Add hover effect to article cards
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+                
+        // Add click animation to buttons
+        document.querySelectorAll('button, a[href="#"]').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // News tab functionality
+        document.querySelectorAll('.news-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.news-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter articles
+                const category = this.dataset.category;
+                const articles = document.querySelectorAll('.news-article');
+                
+                articles.forEach(article => {
+                    if (category === 'all' || article.dataset.categories.includes(category)) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Load more articles functionality
+        document.querySelector('.news-load-more').addEventListener('click', function() {
+            // In a real implementation, this would fetch more articles from a server
+            // For this demo, we'll just show an alert
+            alert('Loading more articles...');
+        });
+    </script>
+</body>
+</html>
